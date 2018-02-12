@@ -47,7 +47,8 @@ var ROW3 = getHeight()*2/3+35;
 var COL1 = 10;
 var COL2 = getWidth()/3+10;
 var COL3 = (getWidth()/3)*2+10;
-//var TIME_TO_SCRAMBLE = 1000;
+var TIME_TO_SCRAMBLE = 10000;
+var SCRAMBLE_INT = 25;
 
 var grid = new Grid(3, 3);
 var correctGrid = new Grid(3, 3);
@@ -154,13 +155,13 @@ function scrambleRandTile() {
 }
 
 function startScrambleTimer() {
-    setTimer(scrambleRandTile, 50)
+    setTimer(scrambleRandTile, SCRAMBLE_INT)
     state = false;
 }
 
 function startScrambleTimeout() {
     println('scrambling ...');
-    setTimeout(stopTimer, 10000);
+    setTimeout(stopTimer, TIME_TO_SCRAMBLE);
 }
 
 function stopTimer() {
