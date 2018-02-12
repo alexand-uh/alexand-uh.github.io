@@ -209,9 +209,9 @@ function handleClick(e) {
     if(compare(grid == correctGrid)){
         state = false;
         if(onWinningScreen) {
+		onWinningScreen = false;
             startScrambleTimer();
             startScrambleTimeout();
-		onWinningScreen = false;
 		
         }
     }
