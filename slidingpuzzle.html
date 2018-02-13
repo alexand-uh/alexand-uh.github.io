@@ -40,19 +40,23 @@ class="codehs-editor-canvas"></canvas>
 <script>
 window.onload = function() {
 
-
+//pos const
 var ROW1 = 35;
 var ROW2 = getHeight()/3+35;
 var ROW3 = getHeight()*2/3+35;
 var COL1 = 10;
 var COL2 = getWidth()/3+10;
 var COL3 = (getWidth()/3)*2+10;
+
+//const for scrambling
 var TIME_TO_SCRAMBLE = 10000;
 var SCRAMBLE_INT = 25;
 
+//create game grids
 var grid = new Grid(3, 3);
 var correctGrid = new Grid(3, 3);
 
+//fill game grids
 function initGame(){
     grid.initFromArray([
         [1, 2, 3],
@@ -146,6 +150,7 @@ function setBox(row, column, value){
     add(text);
 }
 
+//picks a random tile and attempts to swap it
 function scrambleRandTile() {
     var randR = Randomizer.nextInt(1, 3);
     var randC = Randomizer.nextInt(1, 3);
@@ -154,22 +159,26 @@ function scrambleRandTile() {
     checkArray();
 }
 
+//timer that runs scrambleRandTile every SCRAMBLE_INT
 function startScrambleTimer() {
     setTimer(scrambleRandTile, SCRAMBLE_INT)
     state = false;
 }
 
+//timeout on scramble timer
 function startScrambleTimeout() {
     println('scrambling ...');
     setTimeout(stopTimer, TIME_TO_SCRAMBLE);
 }
 
+//fn that stops timer
 function stopTimer() {
     println('scramble complete');
     stopAllTimers();
     state = true;
 }
 
+//starts game by drawing game board, starting scramble
 var state = true;
 function start() {
     drawBoard();
@@ -180,7 +189,7 @@ function start() {
     mouseClickMethod(handleClick);
 }
 
-//add scramble function
+// draws board lines
 function drawBoard() {
     var line1 = new Line(0, getHeight()/3, getWidth(), getHeight()/3);
 	var line2 = new Line(0, (getHeight()/3)*2, getWidth(), (getHeight()/3)*2);
@@ -192,8 +201,7 @@ function drawBoard() {
 	add(line4);
 }
 
-//swap tiles
-//check win condition
+//handles clicks on the game board, sends coords of mouse click in row, col to pos arr 
 var pos = [];
 function handleClick(e) {
   	var x = e.getX();
@@ -218,6 +226,10 @@ function handleClick(e) {
     }
 }
 
+/*passes current clicked row, col to array
+ *assigns all pos of adjacent tiles of blank tile to vars
+ *checks curr pos in arr against adj pos vars, then swaps them
+ */
 function swapTile(r, c) {
   	var posArray = [r, c];
 	var potPos1 = [indexPos[0] - 1, indexPos[1]]
@@ -246,6 +258,7 @@ function swapTile(r, c) {
       }
 }
 
+//finds row, col of passed in value in game grid
 var indexPos = [];
 function indexOf(value) {
 	while(true){
