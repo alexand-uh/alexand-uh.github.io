@@ -70,7 +70,7 @@ function initGame(){
     ]);
 }
 
-
+//Draws text on the canvas based off of the values of grid
 function checkArray(){
     var background = new Rectangle(getWidth(), getHeight());
     background.setPosition(0, 0);
@@ -85,6 +85,7 @@ function checkArray(){
     }
 }
 
+//Checks if the user has solved the puzzle	
 function checkIfWin(){
     if(compare(grid, correctGrid)){
         setTimeout(function(){
@@ -93,6 +94,7 @@ function checkIfWin(){
     }
 }
 
+//Checks if the program has displayed the winning screen	
 var onWinningScreen = false;
 function winningScreen(){
     var background = new Rectangle(getWidth(), getHeight());
@@ -109,6 +111,7 @@ function winningScreen(){
     onWinningScreen = true;
 }
 
+//Compares two grids and returns true if they match	
 function compare(grid1, grid2){
     for(var r = 0; r < 3; r++){
         for(var c = 0; c < 3; c++){
@@ -122,6 +125,7 @@ function compare(grid1, grid2){
     return true;
 }
 
+//Draws text on the canvas using the given row and column	
 function setBox(row, column, value){
     var x = 0;
     var y = 0;
@@ -274,6 +278,7 @@ function indexOf(value) {
       }
 }
 
+//Returns a specific coloumn based off of themouse click coordinates
 function getColumn(x){
     var column = 0;
     if(x > 0){
@@ -294,6 +299,7 @@ function getColumn(x){
     return column;
 }
 
+//Returns a specific row based off of the mouse click coordinates	
 function getRow(y){
     var row = 0;
     if(y > 0){
