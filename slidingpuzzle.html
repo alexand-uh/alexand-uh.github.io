@@ -207,12 +207,26 @@ function drawBoard() {
 
 //handles clicks on the game board, sends coords of mouse click in row, col to pos arr 
 var pos = [];
+	
+//var state2 = 0;
+	
 function handleClick(e) {
   	var x = e.getX();
   	var y = e.getY();
     if(state){
       	pos[0] = getColumn(x);
       	pos[1] = getRow(y);
+	    
+/*	if(pos[0] == 1 && pos[1] == 1){
+		state2++;
+		if(state2 == 4){
+			solve();
+		}
+	}else{
+		state2 = 0;
+	}
+*/
+	    
       	//println(pos[0] + ", " + pos[1]);
       	indexOf(0);
         swapTile(pos[1], pos[0]);
@@ -229,7 +243,18 @@ function handleClick(e) {
         }
     }
 }
-
+	
+/*
+function solve(){
+	while(true){
+		scrambleRandTile()
+		if(compare(grid, correctGrid){
+		   	return;
+		   } 
+	}
+*/
+	
+}
 /*passes current clicked row, col to array
  *assigns all pos of adjacent tiles of blank tile to vars
  *checks curr pos in arr against adj pos vars, then swaps them
