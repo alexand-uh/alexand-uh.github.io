@@ -48,12 +48,6 @@ var COL1 = 10;
 var COL2 = getWidth()/3+10;
 var COL3 = (getWidth()/3)*2+10;
 
-//adjacent tiles to blank tile
-var potPos1 = [indexPos[0] - 1, indexPos[1]]
-var potPos2 = [indexPos[0] + 1, indexPos[1]]
-var potPos3 = [indexPos[0], indexPos[1] + 1]
-var potPos4 = [indexPos[0], indexPos[1] - 1]
-
 //const for scrambling
 var TIME_TO_SCRAMBLE = 10000;
 var SCRAMBLE_INT = 25;
@@ -242,6 +236,10 @@ function handleClick(e) {
  */
 function swapTile(r, c) {
   	var posArray = [r, c];
+	var potPos1 = [indexPos[0] - 1, indexPos[1]]
+  	var potPos2 = [indexPos[0] + 1, indexPos[1]]
+  	var potPos3 = [indexPos[0], indexPos[1] + 1]
+  	var potPos4 = [indexPos[0], indexPos[1] - 1]
   	if(posArray.toString() == potPos1.toString()) {
         var num = grid.get(r-1, c-1)
         grid.set(r-1, c-1, 0);
