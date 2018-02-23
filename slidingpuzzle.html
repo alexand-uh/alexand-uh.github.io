@@ -56,7 +56,8 @@ var SCRAMBLE_INT = 25;
 var grid = new Grid(3, 3);
 var correctGrid = new Grid(3, 3);
 
-//fill game grids
+//fill game grids 
+//Written by: Sean Zeng
 function initGame(){
     grid.initFromArray([
         [1, 2, 3],
@@ -71,6 +72,7 @@ function initGame(){
 }
 
 //Draws text on the canvas based off of the values of grid
+//Written by: Sean Zeng
 function checkArray(){
     var background = new Rectangle(getWidth(), getHeight());
     background.setPosition(0, 0);
@@ -85,7 +87,8 @@ function checkArray(){
     }
 }
 
-//Checks if the user has solved the puzzle	
+//Checks if the user has solved the puzzle
+//Written by: Alexander Peng
 function checkIfWin(){
     if(compare(grid, correctGrid)){
         setTimeout(function(){
@@ -94,7 +97,8 @@ function checkIfWin(){
     }
 }
 
-//Checks if the program has displayed the winning screen	
+//Checks if the program has displayed the winning screen
+//Written by: Alexander Peng
 var onWinningScreen = false;
 function winningScreen(){
     var background = new Rectangle(getWidth(), getHeight());
@@ -111,7 +115,8 @@ function winningScreen(){
     onWinningScreen = true;
 }
 
-//Compares two grids and returns true if they match	
+//Compares two grids and returns true if they match
+//Written by: Sean Zeng
 function compare(grid1, grid2){
     for(var r = 0; r < 3; r++){
         for(var c = 0; c < 3; c++){
@@ -125,7 +130,8 @@ function compare(grid1, grid2){
     return true;
 }
 
-//Draws text on the canvas using the given row and column	
+//Draws text on the canvas using the given row and column
+//Written by: Sean Zeng
 function setBox(row, column, value){
     var x = 0;
     var y = 0;
@@ -155,6 +161,7 @@ function setBox(row, column, value){
 }
 
 //picks a random tile and attempts to swap it
+//Written by: Alexander Peng
 function scrambleRandTile() {
     var randR = Randomizer.nextInt(1, 3);
     var randC = Randomizer.nextInt(1, 3);
@@ -164,18 +171,21 @@ function scrambleRandTile() {
 }
 
 //timer that runs scrambleRandTile every SCRAMBLE_INT
+//Written by: Alexander Peng
 function startScrambleTimer() {
     setTimer(scrambleRandTile, SCRAMBLE_INT)
     state = false;
 }
 
 //timeout on scramble timer
+//Written by: Alexander Peng
 function startScrambleTimeout() {
     println('scrambling ...');
     setTimeout(stopTimer, TIME_TO_SCRAMBLE);
 }
 
 //fn that stops timer
+//Written by: Alexander Peng
 function stopTimer() {
     println('scramble complete');
     stopAllTimers();
@@ -183,7 +193,6 @@ function stopTimer() {
 }
 
 //starts game by drawing game board, starting scramble
-var state = true;
 function start() {
     drawBoard();
   	initGame();
@@ -194,6 +203,7 @@ function start() {
 }
 
 // draws board lines
+//Written by: Alexander Peng
 function drawBoard() {
     var line1 = new Line(0, getHeight()/3, getWidth(), getHeight()/3);
 	var line2 = new Line(0, (getHeight()/3)*2, getWidth(), (getHeight()/3)*2);
@@ -205,8 +215,10 @@ function drawBoard() {
 	add(line4);
 }
 
-//handles clicks on the game board, sends coords of mouse click in row, col to pos arr 
+//handles clicks on the game board, sends coords of mouse click in row, col to pos arr
+//Written by: Sean Zeng
 var pos = [];
+var state = true;
 function handleClick(e) {
   	var x = e.getX();
   	var y = e.getY();
@@ -234,6 +246,7 @@ function handleClick(e) {
  *assigns all pos of adjacent tiles of blank tile to vars
  *checks curr pos in arr against adj pos vars, then swaps them
  */
+//Written by: Alexander Peng
 function swapTile(r, c) {
   	var posArray = [r, c];
 	var potPos1 = [indexPos[0] - 1, indexPos[1]]
@@ -263,6 +276,7 @@ function swapTile(r, c) {
 }
 
 //finds row, col of passed in value in game grid
+//Written by: Alexander Peng
 var indexPos = [];
 function indexOf(value) {
 	while(true){
@@ -279,6 +293,7 @@ function indexOf(value) {
 }
 
 //Returns a specific coloumn based off of themouse click coordinates
+//Written by: Sean Zeng
 function getColumn(x){
     var column = 0;
     if(x > 0){
@@ -299,7 +314,8 @@ function getColumn(x){
     return column;
 }
 
-//Returns a specific row based off of the mouse click coordinates	
+//Returns a specific row based off of the mouse click coordinates
+//Written by: Sean Zeng
 function getRow(y){
     var row = 0;
     if(y > 0){
